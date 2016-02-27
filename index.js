@@ -1,13 +1,11 @@
-var postcss = require('postcss');
+import 'babel-polyfill'
+import postcss from 'postcss'
 
-module.exports = postcss.plugin('postcss-extract', function (opts) {
-    opts = opts || {};
+export default postcss.plugin('postcss-extract', (options = {}) => {
+  // Work with options here
 
-    // Work with options here
-
-    return function (css, result) {
-
-        // Transform CSS AST here
-
-    };
-});
+  return (css, result) => {
+    // Transform CSS AST here
+    console.log({ css, result, options })
+  }
+})

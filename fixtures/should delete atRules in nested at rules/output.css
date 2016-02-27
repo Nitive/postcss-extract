@@ -1,0 +1,7 @@
+@supports (display: flex) {
+  @media (max-width: 500px) {
+    .test {
+      display: flex;
+    }
+  }
+}

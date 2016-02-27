@@ -1,0 +1,33 @@
+{
+  "name": "postcss-extract",
+  "version": "0.0.0",
+  "description": "PostCSS plugin to extract css inside @at-rules into separate files",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "postcss-extract",
+    "extract"
+  ],
+  "author": "Maxim Samoilov <samoilowmaxim@gmail.com>",
+  "license": "MIT",
+  "repository": "Nitive/postcss-extract",
+  "bugs": {
+    "url": "https://github.com/Nitive/postcss-extract/issues"
+  },
+  "homepage": "https://github.com/Nitive/postcss-extract",
+  "dependencies": {
+    "postcss": "^5.0.16"
+  },
+  "devDependencies": {
+    "ava": "^0.12.0",
+    "eslint": "^2.1.0",
+    "eslint-config-postcss": "^2.0.0"
+  },
+  "scripts": {
+    "test": "ava && eslint *.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5"
+  }
+}

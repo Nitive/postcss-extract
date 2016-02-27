@@ -17,7 +17,7 @@ const run = (input, output, opts = {}) => {
 }
 
 
-const getFileInDirectoryContent = dir => file => {
+const getFileContentInDirectory = dir => file => {
   return fs.readFileSync(path.join(dir, file)).toString().trim()
 }
 
@@ -28,7 +28,7 @@ fs.readdirSync(fixturesDir).forEach(caseName => {
 
   const fixtureDir = path.join(fixturesDir, caseName)
   if (!fs.lstatSync(fixtureDir).isDirectory()) return
-  const getFile = getFileInDirectoryContent(fixtureDir)
+  const getFile = getFileContentInDirectory(fixtureDir)
 
   const options = {
     extract: {

@@ -26,8 +26,9 @@ const fixturesDir = path.join(__dirname, 'fixtures')
 fs.readdirSync(fixturesDir).forEach(caseName => {
   if (caseName.includes('[notest]')) return
 
+  const fixtureDir = path.join(fixturesDir, caseName)
+  if (!fs.lstatSync(fixtureDir).isDirectory()) return
   it(caseName, done => {
-    const fixtureDir = path.join(fixturesDir, caseName)
     const input = fs.readFileSync(path.join(fixtureDir, 'input.css')).toString()
     const output = fs.readFileSync(path.join(fixtureDir, 'output.css')).toString()
     run(done, input, output, options)

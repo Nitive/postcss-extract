@@ -9,11 +9,7 @@ import nesting from 'postcss-nesting'
 
 
 const getRoot = atRule => {
-  let rule = atRule
-  while (rule.parent) {
-    rule = rule.parent
-  }
-  return rule
+  return atRule.parent ? getRoot(atRule.parent) : atRule
 }
 
 

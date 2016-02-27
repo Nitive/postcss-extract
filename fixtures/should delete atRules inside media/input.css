@@ -1,0 +1,7 @@
+@media (max-width: 500px) {
+  .test {
+    @important {
+      width: 10px;
+    }
+  }
+}

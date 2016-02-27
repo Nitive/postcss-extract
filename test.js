@@ -1,6 +1,8 @@
 import 'babel-register'
 import postcss from 'postcss'
 import test from 'ava'
+import fs from 'fs'
+import path from 'path'
 
 import plugin from './'
 
@@ -13,7 +15,16 @@ function run(t, input, output, opts = {}) {
     })
 }
 
+const fixturesDir = path.join(__dirname, 'fixtures')
+fs.readdirSync(fixturesDir).forEach(caseName => {
+  if (caseName.includes('[notest]')) return
 
-test('does something', t => {
-  return run(t, 'a{ }', 'a{ }', {})
+  test(caseName, t => {
+    const fixtureDir = path.join(fixturesDir, caseName)
+
+    const actual = fs.readFileSync(path.join(fixtureDir, 'actual.css')).toString()
+    const expected = fs.readFileSync(path.join(fixtureDir, 'expected.css')).toString()
+
+    return run(t, actual, expected, {})
+  })
 })

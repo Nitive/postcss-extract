@@ -1,5 +1,15 @@
-extends: airbnb/base
+parser: 'babel-eslint'
+
+extends: 'airbnb/base'
+
+env:
+  node: true
+  es6: true
+  mocha: true
 
 rules:
-  semi: [2, never]
+  semi: [2, 'never']
+  arrow-parens: [1, 'as-needed']
+  id-length: 0
+  no-multiple-empty-lines: [2, { max: 5 }]
   arrow-body-style: 0

@@ -23,6 +23,7 @@
     "ava": "^0.12.0",
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.2",
+    "babel-eslint": "^5.0.0",
     "babel-polyfill": "^6.5.0",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
@@ -34,6 +35,8 @@
     "mocha": "^2.4.5"
   },
   "scripts": {
-    "test": "ava && eslint *.js"
+    "pretest": "eslint *.js",
+    "test": "mocha --compilers js:babel-register test.js",
+    "watch": "npm test -- -w --watch-extensions css"
   }
 }

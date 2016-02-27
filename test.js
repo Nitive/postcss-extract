@@ -1,30 +1,29 @@
-import 'babel-register'
+require('chai').should()
 import postcss from 'postcss'
-import test from 'ava'
 import fs from 'fs'
 import path from 'path'
 
 import plugin from './'
 
 
-function run(t, input, output, opts = {}) {
+function run(done, input, output, opts = {}) {
   return postcss([plugin(opts)]).process(input)
     .then(result => {
-      t.same(result.css, output)
-      t.same(result.warnings().length, 0)
+      result.warnings().length.should.be.equal(0)
+      result.css.should.be.equal(output)
+      done()
     })
+    .catch(done)
 }
 
 const fixturesDir = path.join(__dirname, 'fixtures')
 fs.readdirSync(fixturesDir).forEach(caseName => {
   if (caseName.includes('[notest]')) return
 
-  test(caseName, t => {
+  it(caseName, done => {
     const fixtureDir = path.join(fixturesDir, caseName)
-
-    const actual = fs.readFileSync(path.join(fixtureDir, 'actual.css')).toString()
-    const expected = fs.readFileSync(path.join(fixtureDir, 'expected.css')).toString()
-
-    return run(t, actual, expected, {})
+    const input = fs.readFileSync(path.join(fixtureDir, 'input.css')).toString()
+    const output = fs.readFileSync(path.join(fixtureDir, 'output.css')).toString()
+    run(done, input, output)
   })
 })

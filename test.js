@@ -3,12 +3,11 @@ import postcss from 'postcss'
 import fs from 'fs'
 import path from 'path'
 
-import nesting from 'postcss-nesting'
 import plugin from './'
 
 
 const run = (input, output, opts = {}) => {
-  return postcss([nesting({ bubble: 'important' }), plugin(opts)])
+  return postcss([plugin(opts)])
     .process(input)
     .then(result => {
       result.warnings().length.should.be.equal(0)

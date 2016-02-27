@@ -19,7 +19,7 @@ const run = (done, input, output, opts = {}) => {
 }
 
 
-const getFileContent = (dir, file) => {
+const getFileInDirectoryContent = dir => file => {
   return fs.readFileSync(path.join(dir, file)).toString().trim()
 }
 
@@ -28,20 +28,23 @@ const fixturesDir = path.join(__dirname, 'fixtures')
 fs.readdirSync(fixturesDir).forEach(caseName => {
   if (caseName.includes('[notest]')) return
 
+  const fixtureDir = path.join(fixturesDir, caseName)
+  if (!fs.lstatSync(fixtureDir).isDirectory()) return
+  const getFile = getFileInDirectoryContent(fixtureDir)
+
   const options = {
     extract: {
       important: `fixtures/${caseName}/extracted-actual.css`,
     },
   }
 
-  const fixtureDir = path.join(fixturesDir, caseName)
-  if (!fs.lstatSync(fixtureDir).isDirectory()) return
   it(caseName, done => {
-    const input = getFileContent(fixtureDir, 'input.css')
-    const output = getFileContent(fixtureDir, 'output.css')
-    const extracted = getFileContent(fixtureDir, 'extracted.css')
-    const extractedActual = getFileContent(fixtureDir, 'extracted-actual.css')
-    extracted.should.be.equal(extractedActual)
+    const input = getFile('input.css')
+    const output = getFile('output.css')
     run(done, input, output, options)
+
+    const extracted = getFile('extracted.css')
+    const extractedActual = getFile('extracted-actual.css')
+    extracted.should.be.equal(extractedActual)
   })
 })

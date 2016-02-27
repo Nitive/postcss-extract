@@ -7,15 +7,13 @@ import nesting from 'postcss-nesting'
 import plugin from './'
 
 
-const run = (done, input, output, opts = {}) => {
+const run = (input, output, opts = {}) => {
   return postcss([nesting({ bubble: 'important' }), plugin(opts)])
     .process(input)
     .then(result => {
       result.warnings().length.should.be.equal(0)
       result.css.should.be.equal(output)
-      done()
     })
-    .catch(done)
 }
 
 
@@ -38,13 +36,13 @@ fs.readdirSync(fixturesDir).forEach(caseName => {
     },
   }
 
-  it(caseName, done => {
+  it(caseName, () => {
     const input = getFile('input.css')
     const output = getFile('output.css')
-    run(done, input, output, options)
-
-    const extracted = getFile('extracted.css')
-    const extractedActual = getFile('extracted-actual.css')
-    extracted.should.be.equal(extractedActual)
+    return run(input, output, options).then(() => {
+      const extracted = getFile('extracted.css')
+      const extractedActual = getFile('extracted-actual.css')
+      extracted.should.be.equal(extractedActual)
+    })
   })
 })

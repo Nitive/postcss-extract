@@ -1,0 +1,7 @@
+@import 'something.css';
+
+.test {
+    @important {
+        width: 10px;
+    }
+}

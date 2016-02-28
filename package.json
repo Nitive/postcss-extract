@@ -39,7 +39,7 @@
   "scripts": {
     "build": "babel index.js -o build.js",
     "prepublish": "npm run build",
-    "test": "mocha --compilers js:babel-register test.js",
+    "test": "mocha --compilers js:babel-register test/test.js",
     "posttest": "eslint *.js",
     "start": "npm test -- -w"
   }

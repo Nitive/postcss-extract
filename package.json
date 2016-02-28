@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/Nitive/postcss-extract",
   "dependencies": {
-    "postcss": "^5.0.16"
+    "postcss": "^5.0.16",
+    "postcss-nesting": "^2.3.0"
   },
   "devDependencies": {
     "babel-cli": "6.5.1",
@@ -31,8 +32,7 @@
     "codecov": "1.0.1",
     "eslint": "2.2.0",
     "eslint-config-airbnb": "6.0.2",
-    "mocha": "2.4.5",
-    "postcss-nesting": "2.3.0"
+    "mocha": "2.4.5"
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register test.js",

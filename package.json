@@ -1,6 +1,6 @@
 {
   "name": "postcss-extract",
-  "version": "1.0.0-beta",
+  "version": "1.0.0-beta-2",
   "description": "PostCSS plugin to extract css inside @at-rules into separate files",
   "keywords": [
     "postcss",

@@ -1,0 +1,11 @@
+@media (max-width: 500px) {
+    .test {
+        background-color: red;
+    }
+}
+
+.test {
+    @important {
+        width: 10px;
+    }
+}

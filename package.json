@@ -36,8 +36,8 @@
     "postcss-nesting": "2.3.0"
   },
   "scripts": {
-    "pretest": "eslint *.js",
     "test": "mocha --compilers js:babel-register test.js",
+    "posttest": "eslint *.js",
     "watch": "npm test -- -w --watch-extensions css"
   }
 }

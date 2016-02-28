@@ -41,7 +41,7 @@
     "build": "babel src -d build",
     "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-register test/test.js",
-    "posttest": "eslint *.js",
+    "posttest": "eslint src test",
     "start": "npm test -- -w"
   }
 }

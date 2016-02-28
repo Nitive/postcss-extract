@@ -12,6 +12,15 @@ const getRoot = atRule => {
 }
 
 
+const hasAtRuleInside = (rule, atRuleName) => {
+  let hasAtRule = false
+  rule.walkAtRules(atRuleName, () => {
+    hasAtRule = true
+  })
+  return hasAtRule
+}
+
+
 export default postcss.plugin('postcss-extract', (options = {}) => {
   const instance = postcss()
 
@@ -25,25 +34,33 @@ export default postcss.plugin('postcss-extract', (options = {}) => {
   instance.use(nesting({ bubble: Object.keys(atRules) }))
 
   const plugin = (css, result) => {
-    Object.keys(atRules).forEach(atRule => {
+    Object.keys(atRules).forEach(atRuleToExract => {
       const extracted = postcss.root()
-      css.walkAtRules(atRule, rule => {
+      css.walkAtRules(atRuleToExract, rule => {
         extracted.append(getRoot(rule))
         rule.remove()
       })
 
-      // clean all rules except rules inside our at-rule
+      // clean all rules except rules inside at-rule to extract
       extracted.walkRules(rule => {
-        if (rule.parent.name === atRule) return
+        if (rule.parent.name === atRuleToExract) return
         rule.remove()
       })
 
-      // remove at-rule wrapper
-      extracted.walkAtRules(atRule, rule => {
-        rule.replaceWith(rule.nodes)
+      extracted.walkAtRules(rule => {
+        if (rule.name === atRuleToExract) {
+          // remove at-rule to extract wrapper
+          rule.replaceWith(rule.nodes)
+          return
+        }
+        if (!hasAtRuleInside(rule, atRuleToExract)) {
+          // remove at-rules without at-rule to extract
+          rule.remove()
+          return
+        }
       })
 
-      fs.writeFileSync(`${atRules[atRule]}`, extracted.toResult().css)
+      fs.writeFileSync(`${atRules[atRuleToExract]}`, extracted.toResult().css)
     })
   }
 

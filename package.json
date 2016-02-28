@@ -39,6 +39,6 @@
     "build": "babel index.js -o build.js",
     "test": "mocha --compilers js:babel-register test.js",
     "posttest": "eslint *.js",
-    "start": "npm test -- -w --watch-extensions css"
+    "start": "npm test -- -w"
   }
 }

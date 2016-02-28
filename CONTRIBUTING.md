@@ -38,7 +38,7 @@ Pull requests are the greatest contributions, so be sure they are focused in sco
 3. Be sure your code follows our practices.
   ```bash
   # Test current code
-  npm run test
+  npm test
   ```
 
 4. Push your branch up to your fork:

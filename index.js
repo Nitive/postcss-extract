@@ -13,8 +13,7 @@ const getRoot = atRule => {
 }
 
 
-export default postcss
-.plugin('postcss-extract', (options = {}) => {
+export default postcss.plugin('postcss-extract', (options = {}) => {
   const instance = postcss()
 
   // atRules = Object where key is atRule and value is path where save file
@@ -24,9 +23,7 @@ export default postcss
   if (!atRules) return instance
 
   // bubble atRules
-  for (const atRule of Object.keys(atRules)) {
-    instance.use(nesting({ bubble: atRule }))
-  }
+  instance.use(nesting({ bubble: Object.keys(atRules) }))
 
   const plugin = (css, result) => {
     Object.keys(atRules).forEach(atRule => {

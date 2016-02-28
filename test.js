@@ -23,7 +23,7 @@ const getFileContentInDirectory = dir => file => {
 
 const fixturesDir = path.join(__dirname, 'fixtures')
 fs.readdirSync(fixturesDir).forEach(caseName => {
-  if (caseName.includes('[notest]')) return
+  if (caseName.indexOf('[notest]') !== -1) return
 
   const fixtureDir = path.join(fixturesDir, caseName)
   if (!fs.lstatSync(fixtureDir).isDirectory()) return

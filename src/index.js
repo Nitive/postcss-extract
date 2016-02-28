@@ -7,8 +7,8 @@ import fs from 'fs'
 import nesting from 'postcss-nesting'
 
 
-const getRoot = atRule => {
-  return atRule.parent ? getRoot(atRule.parent) : atRule
+const getRootAtRule = atRule => {
+  return (atRule.parent && atRule.parent.type === 'atrule') ? getRootAtRule(atRule.parent) : atRule
 }
 
 
@@ -37,7 +37,7 @@ export default postcss.plugin('postcss-extract', (options = {}) => {
     Object.keys(atRules).forEach(atRuleToExract => {
       const extracted = postcss.root()
       css.walkAtRules(atRuleToExract, rule => {
-        extracted.append(getRoot(rule))
+        extracted.append(getRootAtRule(rule))
         rule.remove()
       })
 

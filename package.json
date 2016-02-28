@@ -16,6 +16,7 @@
     "url": "https://github.com/Nitive/postcss-extract/issues"
   },
   "homepage": "https://github.com/Nitive/postcss-extract",
+  "main": "build.js",
   "dependencies": {
     "postcss": "^5.0.16",
     "postcss-nesting": "^2.3.0"
@@ -35,6 +36,7 @@
     "mocha": "2.4.5"
   },
   "scripts": {
+    "build": "babel index.js -o build.js",
     "test": "mocha --compilers js:babel-register test.js",
     "posttest": "eslint *.js",
     "start": "npm test -- -w --watch-extensions css"

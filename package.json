@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Nitive/postcss-extract",
   "main": "build/index.js",
+  "files": ["src", "build", "LICENSE", "README.md", "CHANGELOG.md"],
   "dependencies": {
     "postcss": "5.0.17",
     "postcss-nesting": "2.3.0"

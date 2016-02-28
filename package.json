@@ -1,6 +1,6 @@
 {
   "name": "postcss-extract",
-  "version": "1.0.0-beta-2",
+  "version": "1.0.0",
   "description": "PostCSS plugin to extract css inside @at-rules into separate files",
   "keywords": [
     "postcss",
@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/Nitive/postcss-extract",
   "main": "build/index.js",
-  "files": ["src", "build", "LICENSE", "README.md", "CHANGELOG.md"],
+  "files": [
+    "src",
+    "build",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "dependencies": {
     "postcss": "5.0.17",
     "postcss-nesting": "2.3.0"

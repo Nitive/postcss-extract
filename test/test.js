@@ -3,7 +3,7 @@ import postcss from 'postcss'
 import fs from 'fs'
 import path from 'path'
 
-import plugin from '../'
+import plugin from '../src'
 
 
 const run = (input, output, opts = {}) => {

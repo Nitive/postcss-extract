@@ -10,20 +10,35 @@
 
 ```css
 .foo {
-    /* Input example */
+  height: 40px;
+  @extract-alias {
+    text-decoration: underline;
+  }
 }
 ```
 
+styles.css
 ```css
 .foo {
-  /* Output example */
+  height: 40px;
+}
+```
+
+extracted.css
+```css
+.foo {
+  text-decoration: underline;
 }
 ```
 
 ## Usage
 
 ```js
-postcss([ require('postcss-extract') ])
+postcss([ require('postcss-extract')({
+  extract: {
+    'extract-alias': path.join(__dirname, './relative/path/to/file.css')
+  }
+}) ])
 ```
 
 See [PostCSS] docs for examples for your environment.

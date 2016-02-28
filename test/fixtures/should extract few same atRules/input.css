@@ -1,0 +1,11 @@
+.selector {
+    @important {
+        width: 10px;
+    }
+}
+
+.another-selector {
+    @important {
+        width: 10px;
+    }
+}

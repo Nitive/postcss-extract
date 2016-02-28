@@ -42,3 +42,6 @@ postcss([ require('postcss-extract')({
 ```
 
 See [PostCSS] docs for examples for your environment.
+
+## [License](/LICENSE)
+MIT © Maxim Samoilov

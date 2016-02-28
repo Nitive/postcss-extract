@@ -1,10 +1,10 @@
 @supports (display: flex) {
-  @media (max-width: 500px) {
-    .test {
-      display: flex;
-      @important {
-        width: 10px;
-      }
+    @media (max-width: 500px) {
+        .test {
+            display: flex;
+            @important {
+                width: 10px;
+            }
+        }
     }
-  }
 }

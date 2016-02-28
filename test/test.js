@@ -3,7 +3,7 @@ import postcss from 'postcss'
 import fs from 'fs'
 import path from 'path'
 
-import plugin from './'
+import plugin from '../'
 
 
 const run = (input, output, opts = {}) => {
@@ -21,8 +21,11 @@ const getFileContentInDirectory = dir => file => {
 }
 
 
+const fromHere = relativePath => path.join(__dirname, relativePath)
+
+
 describe('fixtures', () => {
-  const fixturesDir = path.join(__dirname, 'fixtures')
+  const fixturesDir = fromHere('fixtures')
   fs.readdirSync(fixturesDir).forEach(caseName => {
     if (caseName.indexOf('[notest]') !== -1) return
 
@@ -32,7 +35,7 @@ describe('fixtures', () => {
 
     const options = {
       extract: {
-        important: `fixtures/${caseName}/extracted-actual.css`,
+        important: fromHere(`fixtures/${caseName}/extracted-actual.css`),
       },
     }
 

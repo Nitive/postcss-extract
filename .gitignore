@@ -3,3 +3,4 @@ npm-debug.log
 coverage/
 extracted-actual.css
 /build
+.vagrant/

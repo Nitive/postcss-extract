@@ -25,8 +25,8 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "postcss": "5.0.19",
-    "postcss-nesting": "2.3.0"
+    "postcss": "^5.0.19",
+    "postcss-nesting": "^2.3.0"
   },
   "devDependencies": {
     "babel-cli": "6.6.4",

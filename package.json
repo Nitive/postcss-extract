@@ -25,7 +25,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "postcss": "^5.0.20",
+    "postcss": "^5.0.21",
     "postcss-nesting": "^2.3.1"
   },
   "devDependencies": {

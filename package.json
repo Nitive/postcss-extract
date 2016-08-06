@@ -25,12 +25,12 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "postcss": "^5.1.1",
+    "postcss": "^5.1.2",
     "postcss-nesting": "^2.3.1"
   },
   "devDependencies": {
     "babel-cli": "6.11.4",
-    "babel-core": "6.13.1",
+    "babel-core": "6.13.2",
     "babel-eslint": "6.1.2",
     "babel-istanbul": "0.11.0",
     "babel-plugin-add-module-exports": "0.2.1",

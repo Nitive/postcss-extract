@@ -1,9 +1,12 @@
-require('chai').should()
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+
 import postcss from 'postcss'
 import fs from 'fs'
 import path from 'path'
 
 import plugin from '../src'
+
+require('chai').should()
 
 
 const run = (input, output, opts = {}) => {

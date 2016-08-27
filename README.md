@@ -34,11 +34,13 @@ extracted.css
 ## Usage
 
 ```js
-postcss([ require('postcss-extract')({
-  extract: {
-    'extract-alias': path.join(__dirname, './relative/path/to/file.css')
-  }
-}) ])
+postcss([
+  require('postcss-extract')({
+    extract: {
+      'extract-alias': path.join(__dirname, './relative/path/to/file.css')
+    }
+  })
+])
 ```
 
 See [PostCSS] docs for examples for your environment.

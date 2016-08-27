@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import postcss from 'postcss'
+import mkdirp from 'mkdirp'
 import path from 'path'
 import fs from 'fs'
 
@@ -60,7 +61,18 @@ export default postcss.plugin('postcss-extract', (options = {}) => {
         }
       })
 
-      fs.writeFileSync(`${atRules[atRuleToExract]}`, extracted.toResult().css)
+      const pathToDistFile = atRules[atRuleToExract]
+      mkdirp(path.parse(pathToDistFile).dir, err => {
+        if (err) {
+          console.error(err) // eslint-disable-line no-console
+          return
+        }
+        fs.writeFile(pathToDistFile, extracted.toResult().css, error => {
+          if (error) {
+            console.error(error) // eslint-disable-line no-console
+          }
+        })
+      })
     })
   }
 

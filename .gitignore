@@ -4,3 +4,4 @@ coverage/
 extracted-actual.css
 /build
 .vagrant/
+dist/

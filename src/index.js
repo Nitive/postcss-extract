@@ -35,42 +35,45 @@ export default postcss.plugin('postcss-extract', (options = {}) => {
   instance.use(nesting({ bubble: Object.keys(atRules) }))
 
   const plugin = (css, result) => {
-    Object.keys(atRules).forEach(atRuleToExract => {
-      const extracted = postcss.root()
-      css.walkAtRules(atRuleToExract, rule => {
-        extracted.append(getRootAtRule(rule))
-        rule.remove()
-      })
-
-      // clean all rules except rules inside at-rule to extract
-      extracted.walkRules(rule => {
-        if (rule.parent.name === atRuleToExract) return
-        rule.remove()
-      })
-
-      extracted.walkAtRules(rule => {
-        if (rule.name === atRuleToExract) {
-          // remove at-rule to extract wrapper
-          rule.replaceWith(rule.nodes)
-          return
-        }
-        if (!hasAtRuleInside(rule, atRuleToExract)) {
-          // remove at-rules without at-rule to extract
+    return new Promise((resolve, reject) => {
+      Object.keys(atRules).forEach(atRuleToExract => {
+        const extracted = postcss.root()
+        css.walkAtRules(atRuleToExract, rule => {
+          extracted.append(getRootAtRule(rule))
           rule.remove()
-          return
-        }
-      })
+        })
 
-      const pathToDistFile = atRules[atRuleToExract]
-      mkdirp(path.parse(pathToDistFile).dir, err => {
-        if (err) {
-          console.error(err) // eslint-disable-line no-console
-          return
-        }
-        fs.writeFile(pathToDistFile, extracted.toResult().css, error => {
-          if (error) {
-            console.error(error) // eslint-disable-line no-console
+        // clean all rules except rules inside at-rule to extract
+        extracted.walkRules(rule => {
+          if (rule.parent.name === atRuleToExract) return
+          rule.remove()
+        })
+
+        extracted.walkAtRules(rule => {
+          if (rule.name === atRuleToExract) {
+            // remove at-rule to extract wrapper
+            rule.replaceWith(rule.nodes)
+            return
           }
+          if (!hasAtRuleInside(rule, atRuleToExract)) {
+            // remove at-rules without at-rule to extract
+            rule.remove()
+            return
+          }
+        })
+
+        const pathToDistFile = atRules[atRuleToExract]
+        mkdirp(path.parse(pathToDistFile).dir, err => {
+          if (err) {
+            reject(err)
+            return
+          }
+          fs.writeFile(pathToDistFile, extracted.toResult().css, error => {
+            if (error) {
+              reject(error)
+            }
+            resolve()
+          })
         })
       })
     })

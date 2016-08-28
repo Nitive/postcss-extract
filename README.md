@@ -15,6 +15,12 @@
     text-decoration: underline;
   }
 }
+
+@extract-alias {
+  .bar {
+    background-color: tomato;
+  }
+}
 ```
 
 styles.css
@@ -28,6 +34,9 @@ extracted.css
 ```css
 .foo {
   text-decoration: underline;
+}
+.bar {
+  background-color: tomato;
 }
 ```
 

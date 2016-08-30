@@ -10,13 +10,13 @@
 
 ```css
 .foo {
-  height: 40px;
-  @extract-alias {
-    text-decoration: underline;
+  @critical {
+    height: 40px;
   }
+  text-decoration: underline;
 }
 
-@extract-alias {
+@critical {
   .bar {
     background-color: tomato;
   }
@@ -26,14 +26,14 @@
 styles.css
 ```css
 .foo {
-  height: 40px;
+  text-decoration: underline;
 }
 ```
 
 extracted.css
 ```css
 .foo {
-  text-decoration: underline;
+  height: 40px;
 }
 .bar {
   background-color: tomato;
@@ -46,7 +46,8 @@ extracted.css
 postcss([
   require('postcss-extract')({
     extract: {
-      'extract-alias': path.join(__dirname, './relative/path/to/file.css')
+      // keys are @at-rules, values are files to extract @at-rules content
+      critical: path.join(__dirname, './relative/path/to/file.css')
     }
   })
 ])
@@ -55,4 +56,4 @@ postcss([
 See [PostCSS] docs for examples for your environment.
 
 ## [License](/LICENSE)
-MIT © [Maxim Samoilov](http://github.com/nitive)
+MIT © [Maxim Samoilov](http://twitter.com/_nitive)

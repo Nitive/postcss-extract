@@ -46,8 +46,8 @@ describe('fixtures', () => {
       const input = getFile('input.css')
       const output = getFile('output.css')
       return run(input, output, options).then(() => {
-        const extracted = getFile('extracted.css')
-        const extractedActual = getFile('extracted-actual.css')
+        const extracted = getFile('extracted.css').replace(/\r\n|\n/g, '')
+        const extractedActual = getFile('extracted-actual.css').replace(/\r\n|\n/g, '')
         extracted.should.be.equal(extractedActual)
       })
     })

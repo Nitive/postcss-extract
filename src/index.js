@@ -58,7 +58,6 @@ export default postcss.plugin('postcss-extract', (options = {}) => {
           if (!hasAtRuleInside(rule, atRuleToExract)) {
             // remove at-rules without at-rule to extract
             rule.remove()
-            return
           }
         })
 

@@ -1,5 +1,7 @@
 # PostCSS Extract [![Build Status][ci-img]][ci] [![codecov.io][codecov-img]][codecov]
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Nitive/postcss-extract.svg)](https://greenkeeper.io/)
+
 [PostCSS] plugin to extract css inside @at-rules into separate files.
 
 [PostCSS]:     https://github.com/postcss/postcss
